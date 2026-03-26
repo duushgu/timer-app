@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Timer</title>
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  margin-top:100px;
+}
+
+#time{
+  font-size:40px;
+  margin:20px;
+}
+
+button{
+  font-size:16px;
+  padding:10px 20px;
+  margin:5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Timer</h1>
+<div id="time">0</div>
+
+<button onclick="startTimer()">Start</button>
+<button onclick="stopTimer()">Stop</button>
+<button onclick="resetTimer()">Reset</button>
+
+<script>
+
+let time = 0;
+let timer = null;
+
+function startTimer(){
+  if(timer === null){
+    timer = setInterval(function(){
+      time++;
+      document.getElementById("time").innerText = time;
+    },1000);
+  }
+}
+
+function stopTimer(){
+  clearInterval(timer);
+  timer = null;
+}
+
+function resetTimer(){
+  stopTimer();
+  time = 0;
+  document.getElementById("time").innerText = time;
+}
+
+</script>
+
+</body>
+</html>
