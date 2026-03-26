@@ -30,7 +30,7 @@ button{
 <body>
 
 <h1>Timer</h1>
-<div id="time">0</div>
+<div id="time">00:00</div>
 
 <button onclick="startTimer()">Start</button>
 <button onclick="stopTimer()">Stop</button>
@@ -41,11 +41,21 @@ button{
 let time = 0;
 let timer = null;
 
+function formatTime(totalSeconds){
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+}
+
+function updateDisplay(){
+  document.getElementById("time").innerText = formatTime(time);
+}
+
 function startTimer(){
   if(timer === null){
     timer = setInterval(function(){
       time++;
-      document.getElementById("time").innerText = time;
+      updateDisplay();
     },1000);
   }
 }
@@ -58,8 +68,10 @@ function stopTimer(){
 function resetTimer(){
   stopTimer();
   time = 0;
-  document.getElementById("time").innerText = time;
+  updateDisplay();
 }
+
+updateDisplay();
 
 </script>
 
